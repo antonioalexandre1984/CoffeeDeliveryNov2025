@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 
-export const ButtonContainer = styled.button`
+export const ButtonContainer = styled.button.attrs({
+    type: 'button',
+})`
    display: flex;
    gap: 0.25rem;
     align-items: center;

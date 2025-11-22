@@ -21,6 +21,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
 		handleDecreaseQuantityConfirmationOrder,
 		formatMoney,
 		cartQuantity,
+		removeCartItem
 	} = useCart();
 
 
@@ -42,7 +43,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
 								handleDecreaseQuantityConfirmationOrder(coffee.id)
 							}
 						/>
-						<Button text="REMOVER" icon={<Trash color="purple" size={16} />} />
+						<Button onClick={() => removeCartItem(coffee.id)} text="REMOVER" icon={<Trash color="purple" size={16} />} />
 					</ActionsContainer>
 				</div>
 				<PriceFormattedCard>

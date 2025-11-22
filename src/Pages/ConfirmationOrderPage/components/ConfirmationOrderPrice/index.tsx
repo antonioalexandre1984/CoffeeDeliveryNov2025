@@ -3,7 +3,8 @@ import { Button } from "../../../../components/Button";
 import { RegularText, TitleText } from "../../../../components/Typography";
 import { ConfirmationOrderPriceContainer } from "./styles";
 import { useCart } from "../../../../hooks/useCart";
- const deliveryFee = 3.50;
+
+const deliveryFee = 3.50;
 
 
 export function ConfirmationOrderPrice(){ 
@@ -12,7 +13,7 @@ export function ConfirmationOrderPrice(){
     //const deliveryFeeFormatted = formatMoney(3.50);
     const priceWithdeliveryFormatted = formatMoney(cartItemsTotal);
     const cartTotal = formatMoney(cartItemsTotal + deliveryFee);
-
+    const deliveryFeeFormatted = deliveryFee.toFixed(2).replace('.',',');
     return(
         <ConfirmationOrderPriceContainer> 
             <div className="top">      
@@ -21,7 +22,7 @@ export function ConfirmationOrderPrice(){
             </div>
             <div>
             <RegularText>Entrega</RegularText>
-            <RegularText>R${deliveryFee}</RegularText>
+            <RegularText>R${deliveryFeeFormatted}</RegularText>
             </div>
             <div>
             <TitleText size="m">Total</TitleText>

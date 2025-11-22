@@ -14,17 +14,18 @@ export interface OneCoffee {
 }
 
 export interface CartContextType {
+	quantity: number;
 	cartQuantity: number;
 	cartItems: CartItem[];
 	cartItemsTotal: number;
-	quantity: number;
-	addCoffeeToCart: (coffee: CartItem) => void;
 	handleIncreaseQuantity: () => void;
 	handleDecreaseQuantity: () => void;
+	removeCartItem: (id: number) => void;
 	formatMoney: (amount: number) => string;
-	changeCartItemQuantity: (id: number,type: "increase" | "decrease"	) => void;
+	addCoffeeToCart: (coffee: CartItem) => void;
     handleIncreaseQuantityConfirmationOrder: (id: number) => void;
     handleDecreaseQuantityConfirmationOrder: (id: number) => void;
+	changeCartItemQuantity: (id: number,type: "increase" | "decrease"	) => void;
 }
 
 interface CartContextProviderProps {
@@ -39,7 +40,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 	// Estado para controlar a quantidade de um item
 	const [quantity, setQuantity] = useState(0);
 
-      /*----------------------- Função para alterar a quantidade de itens no carrinho da página inicial ---------------------------------*/
+      /*-------- Função para alterar a quantidade de itens no carrinho da página inicial ------------*/
 	function addCoffeeToCart(coffee: CartItem) {
 		// Encontra o índice do item no carrinho (se existir)
 		const coffeeAlreadyExistsInCartIndex = cartItems.findIndex(
@@ -83,12 +84,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 	function handleDecreaseQuantity() {
 		setQuantity((state) => {
 			const newState = state > 1 ? state - 1 : 1;
-			console.log(`Diminuindo para: ${newState}`); // <-- Adicione este log
+			//console.log(`Diminuindo para: ${newState}`); // <-- Adicione este log
 			return newState;
 		});
 	}
 
-    /*----------------------- Função para alterar a quantidade de itens no carrinho de confirmação ---------------------------------*/
+	      /*-------- Função para excluir itens do carrinho da página de confirmação------------*/
+
+	function removeCartItem(id: number) {
+		const newCartItems = cartItems.filter((item) => item.id !== id);
+		setCartItems(newCartItems);
+	}
+
+
+    /*------- Função para alterar a quantidade de itens no carrinho de confirmação ----------*/
 	// Função para alterar a quantidade de um item no carrinho
 	function changeCartItemQuantity(
 		id: number,
@@ -119,8 +128,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     };
 
 
-      /*-----------------------------------Função pata 
-	  --------------------------------------------------------------------*/
+      /*-----------------------------------Função para calcular a quantidade total e o valor total do carrinho---------*/
 
 	// Função para aumentar a quantidade de um item
 	const cartQuantity = cartItems.reduce(
@@ -155,6 +163,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 				quantity,
 				formatMoney,
 				cartItemsTotal,
+				removeCartItem,
 				changeCartItemQuantity,
                 handleIncreaseQuantityConfirmationOrder,
                 handleDecreaseQuantityConfirmationOrder,

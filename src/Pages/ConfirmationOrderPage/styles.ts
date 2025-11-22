@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CompleteOrderPageContainer = styled.form`
+export const CompleteOrderPageContainer = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;

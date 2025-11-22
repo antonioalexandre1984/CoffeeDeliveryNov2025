@@ -2,11 +2,9 @@ import styled from "styled-components";
 
 export const CoffeeCardContainer = styled.div`
 	width: 100%; // Ocupa a largura total do container pai
-	max-width: 368px;
 	display: flex;
 	gap: 1rem;
 	padding: 1rem;
-	//border-radius: 8px;
 	align-items: flex-start; /* Alinha os itens no topo, geralmente melhor para layouts horizontais */
 
 	img {
@@ -39,9 +37,10 @@ export const CoffeeCardContainer = styled.div`
 	}
 `;
 
-export const RemoveButtonsContainer = styled.div`
+export const ActionsContainer = styled.div`
 	display: flex;
 	gap: 0.5rem;
+	justify-content: space-evenly;
 	align-items: center;
 	margin-top: 0.5rem;
 	/* Adiciona flex-shrink: 0 para garantir que os botões não quebrem linha */
@@ -49,9 +48,10 @@ export const RemoveButtonsContainer = styled.div`
 `;
 
 export const PriceFormattedCard = styled.div`
-	display: flex;
+	//display: flex;
+	//align-items: flex-end;
 	// O preço deve ficar fixo à direita. Usar margin-left: auto garante que ele fique no final.
-	margin-left: auto;
+	//margin-left: auto;
 	flex-shrink: 0; /* Impede que o preço desapareça */
-	align-items: flex-start;
+	//align-items: flex-start;
 `;

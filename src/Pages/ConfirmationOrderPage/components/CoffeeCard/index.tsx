@@ -1,25 +1,55 @@
 import { Trash } from "phosphor-react";
-import { Button } from "../../../../components/Button";
-import { QuantityInput } from "../../../../components/QuantityInput/QuantityInput";
-import { RegularText, TitleText } from "../../../../components/Typography";
-import { CoffeeCardContainer,RemoveButtonsContainer,PriceFormattedCard } from "./styles";
-import americano from "../../../../assets/coffees/americano.png";
-export function CoffeeCard() {
+import { Button } from "../../../../components/Button"; 
+
+import { RegularText } from "../../../../components/Typography";
+import {
+	CoffeeCardContainer,
+	ActionsContainer,
+	PriceFormattedCard,
+} from "./styles";
+import { useCart } from "../../../../hooks/useCart";
+import type { CartItem } from "../../../../contexts/CartContext";
+import { QuantityInput } from "../../../../components/QuantityInput";
+
+interface CoffeeCardProps {
+	coffee: CartItem
+}
+
+export function CoffeeCard({ coffee }: CoffeeCardProps) {
+	const {
+		handleIncreaseQuantityConfirmationOrder,
+		handleDecreaseQuantityConfirmationOrder,
+		formatMoney,
+		cartQuantity,
+	} = useCart();
+
+
+	const priceFormatted = formatMoney(coffee.price);
+
 	return (
 		<CoffeeCardContainer>
-            <img src={americano} alt="coffee" />
-			{/* CoffeeCard component content */}
+				<img src={coffee.photo} alt="coffee" />
+				{/* CoffeeCard component content */}
 				<div>
-                    <RegularText>Expresso Tradicional</RegularText>
-					<RemoveButtonsContainer>
-						<QuantityInput />
+					<RegularText>{coffee.name}</RegularText>
+					<ActionsContainer>
+						<QuantityInput
+							quantity={coffee.quantity}
+							onIncrease={() =>
+								handleIncreaseQuantityConfirmationOrder(coffee.id)
+							}
+							onDecrease={() =>
+								handleDecreaseQuantityConfirmationOrder(coffee.id)
+							}
+						/>
 						<Button text="REMOVER" icon={<Trash color="purple" size={16} />} />
-					</RemoveButtonsContainer>
+					</ActionsContainer>
 				</div>
-                <PriceFormattedCard>
-                    <TitleText size="s">R$ 9,90</TitleText>
-                </PriceFormattedCard>
-			
+				<PriceFormattedCard>
+					<RegularText size="s">
+						{cartQuantity} X {priceFormatted}
+					</RegularText>
+				</PriceFormattedCard>
 		</CoffeeCardContainer>
 	);
 }

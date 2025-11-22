@@ -2,22 +2,30 @@ import { NavLink } from "react-router-dom";
 import { Button } from "../../../../components/Button";
 import { RegularText, TitleText } from "../../../../components/Typography";
 import { ConfirmationOrderPriceContainer } from "./styles";
+import { useCart } from "../../../../hooks/useCart";
+ const deliveryFee = 3.50;
 
 
-export function ConfirmationOrderPrice(){
+export function ConfirmationOrderPrice(){ 
+   const { cartItemsTotal, formatMoney } = useCart();
+
+    //const deliveryFeeFormatted = formatMoney(3.50);
+    const priceWithdeliveryFormatted = formatMoney(cartItemsTotal);
+    const cartTotal = formatMoney(cartItemsTotal + deliveryFee);
+
     return(
         <ConfirmationOrderPriceContainer> 
             <div className="top">      
                 <RegularText>Total de itens</RegularText>
-                <RegularText>R$ 29,70</RegularText>
+                <RegularText>R$ {priceWithdeliveryFormatted}</RegularText>
             </div>
             <div>
             <RegularText>Entrega</RegularText>
-            <RegularText>R$ 29,70</RegularText>
+            <RegularText>R${deliveryFee}</RegularText>
             </div>
             <div>
             <TitleText size="m">Total</TitleText>
-              <TitleText size="m">R$ 29,70</TitleText>
+              <TitleText size="m">{cartTotal}</TitleText>
             </div>
              <NavLink to={"/orderconfirmed"}>
             <Button type="submit" text="CONFIRMAR PEDIDO"/>

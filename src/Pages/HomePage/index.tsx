@@ -7,7 +7,6 @@ export function HomePage(){
         <HomePageContainer>
             <Banner/>
             <AllCoffee/>
-            <h1 className="">HomePage</h1> 
         </HomePageContainer>
     )
 }

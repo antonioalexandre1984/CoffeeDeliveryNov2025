@@ -30,14 +30,15 @@ export const InputStyleContainer = styled.div<InputStyleContainerProps>`
 	}
 /* 
 	${({ theme, $hasError }) =>
+		$hasError ? theme.colors["base-error"] : theme.colors["base-button"]}; */
+
+	 /* 	${({ theme, $hasError }) =>
 		$hasError &&
 		css`
 			border-color: ${theme.colors["base-error"]};
-		`} */
-
-		border-color: ${({theme,$hasError})=> 
-			$hasError ? theme.colors["base-error"] : theme.colors["base-input"]
-		}
+		`}  */
+	 border-color: ${({ theme, $hasError }) =>
+		$hasError ? theme.colors["base-error"] : theme.colors["base-input"]};
 `;
 
 export const InputStyled = styled.input`

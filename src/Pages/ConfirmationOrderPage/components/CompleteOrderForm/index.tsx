@@ -5,11 +5,12 @@ import {
 	FormSectionContainer,
 	CompleteOrderFormContainer,
 } from "./styles";
-/* import { AddressForm } from "../AddressForm"; */
+
 import { SectionTitle } from "../SectionTitle/SectionTitle";
 import { useTheme } from "styled-components";
 import { PaymentMethodOptions } from "../PaymentMethodOptions";
-import { SimpleTestForm } from "../AddressForm";
+import { AddressForm } from "../AddressForm";
+
 
 export function CompleteOrderForm() {
 	const { colors } = useTheme();
@@ -22,8 +23,7 @@ export function CompleteOrderForm() {
 					subtitle="Informe o endereço onde deseja receber seu pedido"
 					icon={<MapPin color={colors["brand-yellow-dark"]} size={22} />}
 				/>
-				{/* <AddressForm /> */}
-				<SimpleTestForm />
+				<AddressForm />
 			</FormSectionContainer>
 
 			<FormSectionContainer>

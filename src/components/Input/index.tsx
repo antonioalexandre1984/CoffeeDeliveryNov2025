@@ -7,17 +7,6 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 	error?: string | undefined; 
 	rightText?: string;
 }
-/* export function Input({...props}:InputProps ) {
-	return (
-		<InputWrapper>
-			<InputStyleContainer>
-                <InputStyled {...props}/>
-		{ 		<RightText>Nome</RightText> }
-			</InputStyleContainer>
-		</InputWrapper>
-	);
-}
- */
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({error,className, rightText,...props }, ref) => {
 	return (

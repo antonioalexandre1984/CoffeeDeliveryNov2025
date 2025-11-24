@@ -1,14 +1,19 @@
 import { useFormContext } from "react-hook-form";
-/* import { Input } from "../../../../components/Input"; */
-import { /* AddressFormContainer, */ ErrorMessage, SimpleInput, TestFormContainer } from "./styles";
-/* import type { OrderData } from "../../index"; */
+import { Input } from "../../../../components/Input"; 
+import { AddressFormContainer } from "./styles"; 
+/* import type { OrderData } from "../../index";  */
+interface ErrorsType {
+  errors: {
+    [key: string]: {
+      message: string;
+    }
+  }
+}
+export function AddressForm() {
+  const { register, formState } = useFormContext();
 
-/*export function AddressForm() {
- 	const {
-		register,
-		formState: { errors },
-	} = useFormContext<OrderData>(); */
-	/* return (
+  const { errors } = formState as unknown as ErrorsType;
+	 return (
 		<AddressFormContainer>
 			<div className="cep">
 				<Input
@@ -72,31 +77,4 @@ import { /* AddressFormContainer, */ ErrorMessage, SimpleInput, TestFormContaine
 			</div>
 		</AddressFormContainer> 
 	);
-}*/
-export function SimpleTestForm() {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-
-  // Garante que o tipo seja string
-  const testError = errors.testField?.message as string;
-
-  return (
-    <TestFormContainer>
-      <h3>🧪 Teste de Validação RHF (Isolado)</h3>
-      <SimpleInput
-        placeholder="Campo de Teste"
-        type="text"
-        $hasError={!!testError}
-        // O nome do campo deve existir no schema principal
-        {...register('testField')}
-      />
-      {testError && <ErrorMessage>{testError}</ErrorMessage>}
-      <p style={{ fontSize: '0.8rem', color: 'gray' }}>
-        Se este campo ficar vermelho e exibir o erro no primeiro clique, o problema está
-        nos seus componentes `AddressForm` / `Input`.
-      </p>
-    </TestFormContainer>
-  );
 }

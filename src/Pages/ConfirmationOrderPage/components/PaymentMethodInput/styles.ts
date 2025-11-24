@@ -30,6 +30,9 @@ export const ContentContainer = styled.div`
 	border: 1px solid ${({ theme }) => theme.colors["base-button"]};
 	background: ${({ theme }) => theme.colors["base-button"]};
 	font-size: 0.75rem;
+	text-transform: uppercase;
+	cursor: pointer;
+	border-radius: 6px;
 	transition: 0.4s;
 
 	svg {

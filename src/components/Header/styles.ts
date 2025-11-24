@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface HeaderButtonProps {
-    variant: "purple" | "yellow"
+    $variant: "purple" | "yellow"
 }
 
 export const HeaderContainer = styled.header`
@@ -67,12 +67,12 @@ span{
     justify-content: center;
 }
 
-${({variant,theme})=> css`
-    background: ${theme.colors[`brand-${variant}-light`]};
-    color: ${theme.colors[`brand-${variant}-dark`]};
+${({$variant,theme})=> css`
+    background: ${theme.colors[`brand-${$variant}-light`]};
+    color: ${theme.colors[`brand-${$variant}-dark`]};
 
     span{
-        background: ${theme.colors[`brand-${variant}-dark`]};
+        background: ${theme.colors[`brand-${$variant}-dark`]};
     }
 `}
 

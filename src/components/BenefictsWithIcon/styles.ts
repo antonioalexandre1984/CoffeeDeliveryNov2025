@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 interface IconContainerProps{
-    iconBg: string;
+    $iconBg: string;
 }
 
 
@@ -20,7 +20,7 @@ width: 32px;
 height: 32px;
 border-radius: 50%;
 
-background: ${({iconBg})=> iconBg};
+background: ${({$iconBg})=> $iconBg};
 color: ${({theme})=> theme.colors["base-white"]};
 display: flex;
 align-items: center;

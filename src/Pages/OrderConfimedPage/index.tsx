@@ -8,9 +8,28 @@ import {
 } from "./styles";
 import { useTheme } from "styled-components";
 import Illustration from '../../assets/Illustration.svg'
+import { useLocation } from "react-router-dom";
+import type { OrderData } from "../ConfirmationOrderPage";
 
+type LocationState = {
+	state:OrderData
+}
+
+ const paymentMethods= {
+	credit: "Cartão de Crdeito",
+	debit: "Cartão de Debito", 
+	money:"Dinheiro"
+} 
 export function OrderConfimedPage() {
+
         const { colors } = useTheme();
+		const location = useLocation() as LocationState;
+		console.log(location);
+		const orderData = location.state;
+
+		const fullAddress = `${orderData.street}, ${orderData.number} ${orderData.complement}`
+		const cityState = `${orderData.district} - ${orderData.city}, ${orderData.uf}`
+		const paymentMethodText = paymentMethods[orderData.paymentMethod]
 	return (
 		<OrderConfimedPageContainer className="container">
 			<TitleText>Uhu!Pedido Confirmado</TitleText>
@@ -24,8 +43,8 @@ export function OrderConfimedPage() {
 					<BenefictsWithIcon
 						iconBg={colors["brand-purple"]}
 						icon={<MapPin weight="fill" />}
-						text={<RegularText size="s">Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
-                                <br/>Bairro Centro - São Paulo, SP</RegularText>}
+						text={<RegularText size="s">Entrega em <strong>{fullAddress}</strong>
+                                <br/>{cityState}</RegularText>}
 						title={""}
 					/>
 					<BenefictsWithIcon
@@ -39,7 +58,7 @@ export function OrderConfimedPage() {
 						iconBg={colors["brand-yellow-dark"]}
 						icon={<CurrencyDollar weight="fill" />}
 						text={<RegularText size="s">Pagamento na entrega<br/>
-                        <strong>Cartão de Crédito</strong></RegularText>}
+                        <strong>{paymentMethodText}</strong></RegularText>}
 						title={""}
 					/>
 				</OrderConfimedDetails>

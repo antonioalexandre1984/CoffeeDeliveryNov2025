@@ -6,59 +6,49 @@ export const AddressFormContainer = styled.div`
 	max-width: 35rem;
 	display: grid;
 	flex-direction: column;
-	// Definimos 6 colunas iguais (1fr) para facilitar as proporções de 1/3 e 2/3
-	grid-template-columns: repeat(3, 1fr);
+
+	// CORREÇÃO AQUI: Definimos 6 colunas para que as proporções 1/3 (span 2) e 2/3 (span 4) funcionem.
+	grid-template-columns: repeat(6, 1fr);
 	column-gap: 0.75rem;
 	row-gap: 1rem;
-	//grid-auto-flow: dense;
 
-	// 1ª Linha: CEP (1/3) + Rua (100% - Inicia na 3ª coluna, que é onde o CEP termina)
+	// Linha 1: CEP (1/3)
 	.cep {
-		// Ocupa 1/3 da linha = 2 de 6 colunas
-		grid-column: span 1;
+		// CORREÇÃO: Para ocupar 1/3, ele deve ocupar 2 colunas (2/6 = 1/3)
+		grid-column: span 2;
 	}
 
+	// Linha 2: Rua (100% da linha)
 	.street {
-		// Começa após o CEP (coluna 3) e ocupa o restante (4 colunas)
-		// Requisito: "seguido do campo rua com 100% da largura de linha"
-		// Este requisito é um pouco ambíguo. Assumindo que você quer ele após o CEP na mesma linha,
-		// o grid-column: 3 / span 4 faria ele ocupar as 4 colunas restantes.
-		// Se você quer que ele OCUPE 100% DA LINHA, ele deve estar em uma linha própria
-		// e ocupar 6 colunas.
-		// Vamos separar o CEP e a Rua em linhas diferentes para que a Rua tenha 100% da largura
-		// conforme a interpretação mais literal.
-
-		// Mantenho a estrutura que você forneceu, colocando todos os Inputs um após o outro,
-		// e faço a Rua ocupar a linha inteira, movendo-a para a segunda linha.
-		grid-column: span 6; // Ocupa 100% da largura da linha (6 colunas)
+		// CORREÇÃO: Para ocupar 100% da linha
+		grid-column: span 6;
 	}
 
-	// 2ª Linha (após a Rua): Número (1/3) + Complemento (Restante = 2/3)
+	// Linha 3: Número (1/3) + Complemento (2/3)
 	.number {
-		// Ocupa 1/3 da linha = 2 de 6 colunas
-		grid-column: span 1;
+		// CORREÇÃO: Ocupa 1/3 (2 de 6 colunas)
+		grid-column: span 2;
 	}
 
 	.complement {
-		// Ocupa o restante = 2/3 da linha = 4 de 6 colunas
-		grid-column: span 5;
-	}
-
-	// 3ª Linha (após o Complemento): Bairro
-	// Não foi mencionado, mas por padrão ocupará o espaço disponível (grid-auto-flow)
-
-	.district {
-		grid-column: span 1; // Ocupa 100% da largura da linha
-	}
-	// 4ª Linha: Cidade (2/3) + UF (Restante = 1/3)
-	.city {
-		// Ocupa 2/3 da linha = 4 de 6 colunas
+		// CORREÇÃO: Ocupa o restante 2/3 (4 de 6 colunas)
 		grid-column: span 4;
 	}
 
+	// Linha 4: Bairro (1/3) + Cidade (1/3) + UF (1/3)
+	.district {
+		// CORREÇÃO: Ocupa 1/3 (2 de 6 colunas)
+		grid-column: span 2;
+	}
+
+	.city {
+		// CORREÇÃO: Ocupa 1/3 (2 de 6 colunas)
+		grid-column: span 2;
+	}
+
 	.uf {
-		// Ocupa o restante = 1/3 da linha = 2 de 6 colunas
-		grid-column: span 1;
+		// CORREÇÃO: Ocupa 1/3 (2 de 6 colunas)
+		grid-column: span 2;
 	}
 
 	/* ---------- RESPONSIVIDADE ---------- */
@@ -76,4 +66,42 @@ export const AddressFormContainer = styled.div`
 			grid-column: 1 / span 1 !important;
 		}
 	}
+`;
+
+
+// Estilo para o texto de erro (simula o seu componente de tipografia de erro)
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  font-style: italic;
+  font-weight: bold;
+`;
+
+// O Input de teste estilizado
+export const SimpleInput = styled.input<{ $hasError: boolean }>`
+  padding: 0.75rem;
+  border: 1px solid
+    ${({ $hasError }) => ($hasError ? 'red' : 'lightgray')};
+  border-radius: 4px;
+  width: 100%;
+  transition: border-color 0.4s;
+
+  &:focus {
+    border-color: black;
+  }
+`;
+
+// Contêiner isolado para visualização
+export const TestFormContainer = styled.div`
+  border: 2px dashed #0099ff; /* Borda azul para destaque */
+  padding: 1rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 35rem;
+  margin-left: auto;
+  margin-right: auto;
 `;

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { TitleText } from "../Typography";
-import {BenefictsWithIconContainer,IconContainer,InfoContainer} from './styles'
+/* import { TitleText } from "../Typography"; */
+import {BenefictsWithIconContainer,IconContainer,/* InfoContainer */} from './styles'
 
 interface BenefictsWithIconProps{
     icon: ReactNode;
@@ -9,10 +9,10 @@ interface BenefictsWithIconProps{
     title: string;
 }
 
-export function BenefictsWithIcon ({icon,title,text,iconBg}:BenefictsWithIconProps){
+export function BenefictsWithIcon ({icon,/* title, */text,iconBg}:BenefictsWithIconProps){
     return(
         <BenefictsWithIconContainer>
-            <IconContainer iconBg={iconBg}>
+            <IconContainer $iconBg={iconBg}>
                 {icon}
             </IconContainer>
             {typeof text === 'string' ? <p>{text}</p> : text}

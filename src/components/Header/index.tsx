@@ -13,12 +13,12 @@ export function Header(){
                 <img src={Logo} alt="logo"/>
                 </NavLink>
                 <HeaderButtonContainer>
-                    <HeaderButton variant='purple'>
+                    <HeaderButton $variant='purple'>
                         <MapPin size={22} weight="fill"/>
                         São Paulo - SP
                     </HeaderButton>
                     <NavLink to={"/conpletecart"}>
-                        <HeaderButton variant='yellow'>
+                        <HeaderButton $variant='yellow'>
                             {cartQuantity >=1 &&<span>{cartQuantity}</span>}   
                             <ShoppingCart size={20} weight="fill"/>
                         </HeaderButton>

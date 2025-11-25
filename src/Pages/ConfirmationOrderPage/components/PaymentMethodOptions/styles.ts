@@ -14,7 +14,6 @@ export const PaymentMethodOptionsContainer = styled.div`
 		justify-content: center;
 		align-items: center;
 		gap: 0.75rem;
-		
 	}
 
 	/* Estilos do parágrafo de erro */
@@ -34,7 +33,8 @@ export const PaymentMethodOptionsContainer = styled.div`
 	@media (max-width: 768px) {
 		/* Garante que o wrapper de opções mude para coluna no mobile */
 		.options-wrapper {
-			flex-direction: column;
+			display: flex;
+			//flex-direction: column;
 		}
 	}
 `;

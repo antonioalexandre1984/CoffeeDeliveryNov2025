@@ -20,17 +20,35 @@ justify-content: center;
 `
 
 export const BannerContent = styled.div`
-display: flex;
-align-items: top;
-justify-content: space-between;
-gap: 3.5rem;
+	display: flex;
+	align-items: top;
+	justify-content: space-between;
+	gap: 3.5rem;
+	
 
-img{
-    width: 476px;
-    height: 360px;
-}
+	img {
+		width: 476px;
+		height: 360px;
+	}
 
-`
+	/* ----------------------------------- */
+	/* RESPONSIVIDADE MÓVEL       */
+	/* ----------------------------------- */
+	@media (max-width: 768px) {
+        width: 100%;
+		display: flex;
+        align-items: center;
+		margin-top: 20rem;
+		// Quando a tela é menor ou igual a 768px, os itens se empilham
+		flex-direction: column;
+
+		// Remove ou ajusta o espaçamento lateral se necessário para telas muito pequenas
+		gap: 2.5rem;
+
+		// Se a classe "container" já faz isso, pode ser redundante
+		padding:1.5rem;
+	}
+`;
 
 export const BannerIntroTitle = styled(TitleText)`
 margin-bottom: 1rem;
@@ -52,6 +70,9 @@ grid-template-columns: 1fr 1fr;
 row-gap: 1.25rem;
 margin-top:4.125rem; 
 
+@media (max-width: 768px) {
+	margin-bottom: 0;
+}
 `
 
 export const BenefictsWithIcon = styled.div``

@@ -30,7 +30,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
 	return (
 		<CoffeeCardContainer>
 				<img src={coffee.photo} alt="coffee" />
-				{/* CoffeeCard component content */}
+			
 				<div>
 					<RegularText>{coffee.name}</RegularText>
 					<ActionsContainer>

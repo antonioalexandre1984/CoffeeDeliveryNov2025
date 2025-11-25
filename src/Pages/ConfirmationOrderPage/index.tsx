@@ -9,6 +9,7 @@ import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
+import { useCart } from "../../hooks/useCart";
   
 
 /* const PaymentMethods = {
@@ -19,13 +20,13 @@ import { useNavigate } from "react-router-dom";
 type PaymentMethods = keyof typeof PaymentMethods; */
 
 const confirmOrderFormValidationSchema = zod.object({
-	cep: zod.string().min(2, "CEP é obrigatório"),
-	street: zod.string().min(1, "Rua é obrigatória"),
-	number: zod.string().min(1, "Número é obrigatório"),
+	cep: zod.string().min(8, "CEP é obrigatório"),
+	street: zod.string().min(5, "Rua é obrigatória"),
+	number: zod.string().min(5, "Número é obrigatório"),
 	complement: zod.string().optional(),
-	district: zod.string().min(1, "Bairro é obrigatório"),
-	city: zod.string().min(1, "Cidade é obrigatória"),
-	uf: zod.string()                 .min(1, "UF é obrigatório"),
+	district: zod.string().min(6, "Bairro é obrigatório"),
+	city: zod.string().min(6, "Cidade é obrigatória"),
+	uf: zod.string().min(2, "UF é obrigatório"),
 	paymentMethod: zod.enum(["credit", "debit", "money"], {
 		message: "Informe o método de pagamento",
 	}),
@@ -34,31 +35,48 @@ const confirmOrderFormValidationSchema = zod.object({
 export type OrderData  =zod.infer<typeof confirmOrderFormValidationSchema>;
 type ConfirmOrderFormData = OrderData
 export function CompleteOrderPage() {
+    // ... (navigate e cleanCart, se aplicável)
     const navigate = useNavigate();
+    const { cleanCart } = useCart();
+    
     const confirmOrderForm = useForm<ConfirmOrderFormData>({
         resolver: zodResolver(confirmOrderFormValidationSchema),
-        mode: "onChange",
-        reValidateMode: "onChange", // <--- ESSENCIAL para a validação SUMIR ao digitar!
+        
+        // Use onChange para que os erros sumam à medida que o usuário digita
+        mode: "all", 
+        reValidateMode: "onChange", 
+        
         defaultValues: {
             paymentMethod: undefined,
+            cep: '', 
+            street: '',
+            number: '',
+            complement: '', // Opcional
+            district: '',
+            city: '',
+            uf: '',
+            // Garanta que todos os campos de endereço estejam vazios (string vazia)
         },
     });
 
-     const { handleSubmit,trigger } = confirmOrderForm;
-     // 1. EFEITO DE SINCRONIZAÇÃO: Apenas força o RHF a re-renderizar na montagem.
-    // 1. 🚀 EFEITO DE ATIVAÇÃO: Roda na montagem para forçar a validação
+    const { handleSubmit, trigger } = confirmOrderForm;
+
+    // 🚨 PASSO CHAVE: Forçar a validação na montagem
     useEffect(() => {
-        // Usa `trigger()` sem argumentos para validar TODOS os campos
-        // Isso força a leitura dos defaultValues vazios e a ativação dos erros
+        // O 'trigger(undefined)' força a execução do ZodResolver em todos os campos
+        // Isso fará com que os defaultValues vazios gerem erros, que serão exibidos
         trigger(undefined, { shouldFocus: false });
     }, [trigger]);
 
     function handleConfirmOrder(data: ConfirmOrderFormData) {
-        // Lógica de navegação após a validação de sucesso
-        navigate("/orderconfirmed", { state: data });
+        // ... Lógica de sucesso
+        console.log("Pedido confirmado:", data);
+        navigate('/orderconfirmed',{
+            state:data,
+        })
+        cleanCart();
     }
 
-    // 2. FUNÇÃO DE ERRO: Garante que o RHF se sincronize mesmo após uma falha de submissão
     const handleErrors = (errors: any) => {
         console.log("ERROS NA SUBMISSÃO:", errors);
         // Garante que o estado de erro seja exibido imediatamente
@@ -68,12 +86,13 @@ export function CompleteOrderPage() {
     return (
         <FormProvider {...confirmOrderForm}>
             <CompleteOrderPageContainer
+                // ...
                 className="container"
-                // 3. SUBMISSÃO: Usa os dois callbacks (sucesso e erro)
                 onSubmit={handleSubmit(handleConfirmOrder, handleErrors)} 
             >
-                <CompleteOrderForm />
-                <SelectedCoffees />
+                <CompleteOrderForm/>
+                <SelectedCoffees/>
+                {/* ... (Seu formulário e cafés) */}
             </CompleteOrderPageContainer>
         </FormProvider>
     );

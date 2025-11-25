@@ -18,6 +18,7 @@ export interface CartContextType {
 	cartQuantity: number;
 	cartItems: CartItem[];
 	cartItemsTotal: number;
+	cleanCart: () => void;
 	handleIncreaseQuantity: () => void;
 	handleDecreaseQuantity: () => void;
 	removeCartItem: (id: number) => void;
@@ -152,9 +153,15 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 		}).format(amount);
 	}
 
+	// Função para esvaziar o carrinho
+	function cleanCart() {
+    setCartItems([]);
+  	}
+
 	return (
 		<CartContext.Provider
 			value={{
+				cleanCart,
 				cartItems,
 				cartQuantity,
 				addCoffeeToCart,

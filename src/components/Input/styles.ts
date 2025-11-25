@@ -15,30 +15,28 @@ export const InputWrapper = styled.div`
 `;
 
 export const InputStyleContainer = styled.div<InputStyleContainerProps>`
-	height: 2.625rem;
-	border-radius: 4px;
-	border: 1px solid ${({ theme }) => theme.colors["base-button"]};
-	background: ${({ theme }) => theme.colors["base-input"]};
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	transition: 0.4s;
-	overflow: hidden;
+    height: 2.625rem;
+    border-radius: 4px;
+    background: ${({ theme }) => theme.colors["base-input"]};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.4s;
+    overflow: hidden;
 
-	&:focus-within {
-		border-color: ${({ theme }) => theme.colors["brand-yellow-dark"]};
-	}
-/* 
-	${({ theme, $hasError }) =>
-		$hasError ? theme.colors["base-error"] : theme.colors["base-button"]}; */
+    /* 🚨 CORREÇÃO ESSENCIAL: UNIFICAR A LÓGICA DA BORDA */
+    border: 1px solid 
+        ${({ theme, $hasError }) =>
+            $hasError ? theme.colors["base-error"] : theme.colors["base-button"]
+        }; 
 
-	 /* 	${({ theme, $hasError }) =>
-		$hasError &&
-		css`
-			border-color: ${theme.colors["base-error"]};
-		`}  */
-	 border-color: ${({ theme, $hasError }) =>
-		$hasError ? theme.colors["base-error"] : theme.colors["base-input"]};
+    &:focus-within {
+        /* Garante que o foco amarelo sobrescreva a cor base, mas não a cor de erro */
+        border-color: ${({ theme, $hasError }) =>
+            $hasError ? theme.colors["base-error"] : theme.colors["brand-yellow-dark"]
+        };
+    }
+ 
 `;
 
 export const InputStyled = styled.input`

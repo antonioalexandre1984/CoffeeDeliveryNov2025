@@ -43,7 +43,7 @@ export function CompleteOrderPage() {
         resolver: zodResolver(confirmOrderFormValidationSchema),
         
         // Use onChange para que os erros sumam à medida que o usuário digita
-        mode: "all", 
+            mode: "all", 
         reValidateMode: "onChange", 
         
         defaultValues: {
@@ -59,14 +59,14 @@ export function CompleteOrderPage() {
         },
     });
 
-    const { handleSubmit, trigger } = confirmOrderForm;
+    const { handleSubmit/* , trigger  */} = confirmOrderForm;
 
     // 🚨 PASSO CHAVE: Forçar a validação na montagem
-    useEffect(() => {
+   /*  useEffect(() => {
         // O 'trigger(undefined)' força a execução do ZodResolver em todos os campos
         // Isso fará com que os defaultValues vazios gerem erros, que serão exibidos
         trigger(undefined, { shouldFocus: false });
-    }, [trigger]);
+    }, [trigger]); */
 
     function handleConfirmOrder(data: ConfirmOrderFormData) {
         // ... Lógica de sucesso
@@ -80,7 +80,7 @@ export function CompleteOrderPage() {
     const handleErrors = (errors: any) => {
         console.log("ERROS NA SUBMISSÃO:", errors);
         // Garante que o estado de erro seja exibido imediatamente
-        trigger(undefined, { shouldFocus: true });
+        //trigger(undefined, { shouldFocus: true });
     };
 
     return (

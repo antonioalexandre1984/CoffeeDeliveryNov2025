@@ -43,7 +43,7 @@ export function CompleteOrderPage() {
         resolver: zodResolver(confirmOrderFormValidationSchema),
         
         // Use onChange para que os erros sumam à medida que o usuário digita
-            mode: "all", 
+           // mode: "all", 
         reValidateMode: "onChange", 
         
         defaultValues: {

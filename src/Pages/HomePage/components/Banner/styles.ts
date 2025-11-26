@@ -24,7 +24,6 @@ export const BannerContent = styled.div`
 	align-items: top;
 	justify-content: space-between;
 	gap: 3.5rem;
-	
 
 	img {
 		width: 476px;
@@ -34,19 +33,37 @@ export const BannerContent = styled.div`
 	/* ----------------------------------- */
 	/* RESPONSIVIDADE MÓVEL       */
 	/* ----------------------------------- */
-	@media (max-width: 768px) {
-        width: 100%;
+	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+		width: 100%;
 		display: flex;
-        align-items: center;
-		margin-top: 20rem;
+		align-items: center;
+		margin-top: 25rem;
 		// Quando a tela é menor ou igual a 768px, os itens se empilham
 		flex-direction: column;
 
 		// Remove ou ajusta o espaçamento lateral se necessário para telas muito pequenas
 		gap: 2.5rem;
-
+		font-size: ${({ theme }) => theme.textSizes["title-title-xs"]};
 		// Se a classe "container" já faz isso, pode ser redundante
-		padding:1.5rem;
+		padding: 1.5rem;
+		img{
+			max-width:70%;
+			height: 70%;
+		}
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		margin-top: 25rem;
+		// Quando a tela é menor ou igual a 768px, os itens se empilham
+		flex-direction: column;
+		// Remove ou ajusta o espaçamento lateral se necessário para telas muito pequenas
+		gap: 2.5rem;
+		// Se a classe "container" já faz isso, pode ser redundante
+		padding: 1.5rem;
+		font-size: ${({ theme }) => theme.textSizes["title-title-xs"]};
 	}
 `;
 

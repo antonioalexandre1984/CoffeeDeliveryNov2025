@@ -64,6 +64,8 @@ export const BannerContent = styled.div`
 		// Se a classe "container" já faz isso, pode ser redundante
 		padding: 1.5rem;
 		font-size: ${({ theme }) => theme.textSizes["title-title-xs"]};
+
+
 	}
 `;
 

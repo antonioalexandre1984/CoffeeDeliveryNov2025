@@ -15,7 +15,7 @@ export function Banner() {
 		<BannerContainer>
 			<BannerContent className="container">
 				<section className="">
-					<BannerIntroTitle>
+					<BannerIntroTitle size="xl">
 						Encontre o café perfeito <br />
 						para qualquer hora do dia
 					</BannerIntroTitle>

@@ -4,10 +4,10 @@ import {
 } from "./styles";
 import { CompleteOrderForm } from "./components/CompleteOrderForm";
 import { SelectedCoffees } from "./components/SelectedCoffees";
-import { FormProvider, useForm , useFormContext } from "react-hook-form";
+import { FormProvider, useForm /* , useFormContext */ } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+/* import { useEffect } from "react"; */
 import { useNavigate } from "react-router-dom"; 
 import { useCart } from "../../hooks/useCart";
   

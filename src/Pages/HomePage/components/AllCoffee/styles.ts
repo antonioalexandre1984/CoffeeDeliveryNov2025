@@ -3,12 +3,9 @@ import styled from "styled-components";
 export const AllCoffeeContainer = styled.div`
 	width: 100%;
 	margin-top: 2rem;
-	@media (max-width: 768px) {
-		margin-top: 20rem;
-		h1{
-			display: flex;
-			justify-content: center;
-		}
+	@media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+		padding-top: 25rem;
+		
 	}
 `;
 
@@ -21,10 +18,14 @@ export const AllCoffeeList = styled.div`
 	row-gap: 4rem;
 	margin-top: 3.5rem;
 
-	@media (max-width: 768px) {
-
-
-		grid-template-columns: 2 4fr;
-		padding: 2rem;
+	@media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+		padding-top: 10rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		margin: 0.50rem;
+		gap: 1rem;
+		row-gap: 4rem;
+		column-gap: 0.5rem;
+		margin: 1rem auto;
 	}
 `;

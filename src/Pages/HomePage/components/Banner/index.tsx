@@ -16,11 +16,11 @@ export function Banner() {
 			<BannerContent className="container">
 				<section className="">
 					<BannerIntroTitle size="xl">
-						Encontre o café perfeito <br />
+						Encontre o café perfeito 
 						para qualquer hora do dia
 					</BannerIntroTitle>
-					<BannerIntroRegularText>
-						Com o Coffee Delivery você recebe seu café onde estiver, a <br />{" "}
+					<BannerIntroRegularText size="l">
+						Com o Coffee Delivery você recebe seu café onde estiver, a 
 						qualquer hora.
 					</BannerIntroRegularText>
 

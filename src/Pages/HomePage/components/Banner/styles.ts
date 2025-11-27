@@ -26,10 +26,8 @@ export const BannerContainer = styled.section`
 	align-items: center;
 	justify-content: center;
 
-	/* Desktop/Tablet (md) - >= 768px: Estilo original fixo */
-	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-		height: 34rem;
-		padding: 0;
+	/* Desktop/Tablet (lg) - Ajuste de altura se necessário */
+	@media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
 	}
 `;
 
@@ -49,14 +47,22 @@ export const BannerContent = styled.div`
 	/* Ajuste para o conteúdo do CupCoffee */
 	img {
 		width: 100%; /* Imagem preenche a largura no mobile */
-		max-width: 300px; /* Limita o tamanho máximo */
-		height: auto;
+		max-width: 460px; /* Limita o tamanho máximo */
+	}
+
+	/* Celular pequeno (sm) - Ajusta o tamanho da imagem */
+	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+		img {
+			width: 80%; /* Reduz um pouco no celular */
+			height: auto;
+			max-width: 300px;
+		}
 	}
 
 	/*
     Desktop/Tablet (md) - >= 768px
     Retorna ao layout original de duas colunas (row)
-  */
+    */
 	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
 		max-width: 1120px; /* Limita a largura principal (baseado na sua classe 'container') */
 		flex-direction: row; /* Coloca lado a lado */
@@ -66,9 +72,17 @@ export const BannerContent = styled.div`
 		padding: 0;
 
 		img {
-			width: 476px; /* Tamanho original da imagem */
+			width: 476px;
 			height: 360px;
 			max-width: none;
+		}
+	}
+
+	/* Desktop grande (lg) - >= 992px: Ajuste da imagem */
+	@media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+		img {
+			width: 550px;
+			height: 400px;
 		}
 	}
 `;
@@ -79,46 +93,75 @@ export const BannerContent = styled.div`
 
 export const BannerIntroTitle = styled(TitleText)`
 	margin-bottom: 1rem;
-	/* MOBILE-FIRST: Usa um tamanho de fonte menor e centraliza o texto */
-	//font-size: ${({ theme }) => theme.textSizes["title-title-xl"]};
-	text-align: left;
 	text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-	/* Desktop (md) - >= 768px: Retorna ao tamanho e alinhamento original */
-	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-		font-size: ${({ theme }) => theme.textSizes["title-title-m"]};
+
+	/* MOBILE-FIRST (Estilo Base) */
+	font-size: ${({ theme, size }) => {
+		if (size === "xl") return theme.textSizes["title-title-l"];
+		if (size === "l") return theme.textSizes["title-title-m"];
+		return theme.textSizes[`title-title-${size ?? "m"}`];
+	}};
+	text-align: center;
+
+	/* Tablet (md) - >= 768px: Retorna ao tamanho definido na prop 'size' e alinha à esquerda */
+	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+		font-size: ${({ theme, size }) =>
+			theme.textSizes[`title-title-${size ?? "m"}`]};
 		text-align: left;
+	}
+	@media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+		text-align: left;
+		gap:1rem;
 	}
 `;
 
 export const BannerIntroRegularText = styled(RegularText)`
-	font-size: ${({ theme }) => theme.textSizes["text-regular-l"]};
 	color: ${({ theme }) => theme.colors["base-subtitle"]};
-	text-align: center; /* Centraliza no mobile */
 
+	/* MOBILE-FIRST (Estilo Base) */
+	font-size: ${({ theme, size }) => {
+		if (size === "l") return theme.textSizes["text-regular-s"];
+		return theme.textSizes[`text-regular-${size ?? "m"}`];
+	}};
+	text-align: center;
+
+	/* Tablet (md) - >= 768px: Retorna ao tamanho definido na prop 'size' e alinha à esquerda */
 	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+		font-size: ${({ theme, size }) =>
+			theme.textSizes[`text-regular-${size ?? "m"}`]};
 		text-align: left;
 	}
 `;
 
 // ----------------------------------------------------
-// 4. BANNER BENEFÍCIOS CONTAINER
+// 4. BANNER BENEFÍCIOS CONTAINER (AJUSTADO PARA CASCATA)
 // ----------------------------------------------------
 
 export const BannerBenefictsContainer = styled.div`
 	width: 100%;
-	display: grid;
-	/* MOBILE-FIRST: Uma coluna para empilhar os benefícios */
-	grid-template-columns: 1fr;
-	row-gap: 1.25rem;
 	margin-top: 2.5rem; /* Margem ajustada para mobile */
-	margin-bottom: 0;
 
-	/* Desktop/Tablet (md) - >= 768px: Duas colunas */
+	/* MOBILE-FIRST: Uma única coluna para empilhamento (efeito cascata) */
+	display: grid;
+	grid-template-columns: 1fr; /* Uma coluna de largura total */
+	row-gap: 1.25rem; /* Espaçamento vertical entre os itens */
+
+	/* Garante que o grid se alinhe à esquerda se o container for mais largo */
+	justify-items: start;
+
+	/* Tablet (md) - >= 768px: Estrutura de duas colunas */
 	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(
+			2,
+			max-content
+		); /* Duas colunas, ajustando a largura ao conteúdo */
+		column-gap: 2.5rem; /* Espaçamento horizontal entre as colunas */
+		row-gap: 1.25rem;
 		margin-top: 4.125rem;
 	}
-`;
 
-// Exportação mantida, assumindo que esta é usada em outro lugar.
-export const BenefictsWithIcon = styled.div``;
+	/* Desktop grande (lg) - Mantém a estrutura de duas colunas */
+	@media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+		grid-template-columns: repeat(2, max-content);
+	}
+`;

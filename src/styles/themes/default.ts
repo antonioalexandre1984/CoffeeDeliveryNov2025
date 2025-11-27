@@ -1,8 +1,8 @@
 export const breakpoints = {
 	// Mobile padrão é o default, sem media query
-	sm: "350px", // Celulares grandes/Paisagem
+	sm: "435px", // Celulares grandes/Paisagem
 	md: "768px", // Tablets (Este é o ponto de quebra mais importante)
-	lg: "902px", // Laptops/Desktops pequenos
+	lg: "799px", // Laptops/Desktops pequenos
 	xl: "1200px", // Desktops padrão
 } as const;
 
@@ -32,12 +32,13 @@ export const defaultTheme = {
 		"title-title-m": "1.5rem",
 		"title-title-s": "1.2rem",
 		"title-title-xs": "1.125rem",
-		"text-regular-l": "1.25rem",
-		"text-bold-l": "1.25rem",
-		"text-regular-m": "1rem",
-		"text-bold-m": "1rem",
+		"text-regular-xs": "0.750rem",
 		"text-regular-s": "0.875rem",
+		"text-regular-m": "1rem",
+		"text-regular-l": "1.25rem",
 		"text-bold-s": "0.75rem",
+		"text-bold-m": "1rem",
+		"text-bold-l": "1.25rem",
 		"components-tag": "0.625rem",
 		"components-button-g": "0.875rem",
 		"components-button-s": "0.75rem",

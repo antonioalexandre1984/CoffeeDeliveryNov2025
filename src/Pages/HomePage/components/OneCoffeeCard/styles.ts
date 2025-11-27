@@ -2,20 +2,24 @@ import styled from "styled-components";
 import { RegularText } from "../../../../components/Typography";
 
 export const OneCoffeeCardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background: ${({ theme }) => theme.colors["base-card"]};
-  border-radius: 6px 36px 6px 36px;
-  padding: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	background: ${({ theme }) => theme.colors["base-card"]};
+	border-radius: 6px 36px 6px 36px;
+	padding: 1.25rem;
 
-  img {
-    width: 7.5rem;
-    height: 7.5rem;
-    margin-top: -4.25rem;
-  }
+	img {
+		width: 7.5rem;
+		height: 7.5rem;
+		margin-top: -4.25rem;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
+    padding: 0.5rem;
+	}
 `;
 
 export const Tag = styled.div`
@@ -39,9 +43,19 @@ export const Tag = styled.div`
 `;
 
 export const Description = styled(RegularText)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+		font-size: 0.50rem;/* ${({theme})=> theme.textSizes["text-regular-xs"]}; */
+    //padding: 0.5rem;
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+		padding: 0.75rem;
+		text-align: center;
+	}
 `;
 
 export const OneCoffeeCardFooter = styled.div`

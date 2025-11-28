@@ -36,6 +36,12 @@ export const TitleText = styled.h1<TitleTextProps>`
 	text-align: center;
 
 	/* Tablet (md) - >= 768px: Retorna ao tamanho definido na prop 'size' */
+	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+		font-size: 1rem;
+		text-align: left;
+	}
+
+	/* Tablet (md) - >= 768px: Retorna ao tamanho definido na prop 'size' */
 	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
 		font-size: ${({ theme, size }) =>
 			theme.textSizes[`title-title-${size ?? "m"}`]};

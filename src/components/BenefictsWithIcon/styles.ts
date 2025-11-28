@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { RegularText } from "../Typography";
 
 interface IconContainerProps{
     $iconBg: string;
@@ -28,16 +29,21 @@ export const BenefictsWithIconContainer = styled.div`
 `;
 
 export const IconContainer = styled.div<IconContainerProps>`
-width: 32px;
-height: 32px;
-border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
 
-background: ${({$iconBg})=> $iconBg};
-color: ${({theme})=> theme.colors["base-white"]};
-display: flex;
-align-items: center;
-justify-content: center;
-`
+	background: ${({ $iconBg }) => $iconBg};
+	color: ${({ theme }) => theme.colors["base-white"]};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+		width: 28px;
+        height: 28px;
+	}
+`;
 
 
 export const InfoContainer = styled.div`

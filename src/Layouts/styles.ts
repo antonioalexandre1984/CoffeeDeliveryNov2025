@@ -14,7 +14,6 @@ export const DefaultLayoutContainer = styled.div`
 	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
 		width: 100%;
 		padding: 1.5rem;
-		overflow-x: hidden;
 		scroll-behavior: auto;
 	}
 `;

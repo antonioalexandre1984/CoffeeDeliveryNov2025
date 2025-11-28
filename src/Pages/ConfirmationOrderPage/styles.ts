@@ -7,12 +7,13 @@ import { rgba } from "polished";
 // BANNER CONTAINER
 // ----------------------------------------------------
 
-export const CompleteOrderPageContainer = styled.section`
+export const CompleteOrderPageContainer = styled.form`
 	width: 100%;
-	/* Mobile-First: Uma altura maior para comportar o conteúdo empilhado */
-	height: auto;
-	padding-top: 4rem; /* Garante espaço no topo */
-	padding-bottom: 4rem; /* Garante espaço na base */
+	display: flex;
+	margin-top: 10rem;
+	justify-content: space-between;
+	gap: 2rem;
+	margin-bottom: 15rem;
 
 	background: ${({
 		theme,

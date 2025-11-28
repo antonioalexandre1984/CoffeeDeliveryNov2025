@@ -8,12 +8,16 @@ import { rgba } from "polished";
 // ----------------------------------------------------
 
 export const CompleteOrderPageContainer = styled.form`
-	width: 100%;
-	display: flex;
-	margin-top: 10rem;
-	justify-content: space-between;
-	gap: 2rem;
-	margin-bottom: 15rem;
+	//margin-top: 10rem;
+	> div {
+		width: 100%;
+		display: flex;
+		margin-top: 10rem;
+		justify-content: space-between;
+		gap: 2rem;
+		padding-bottom: 15rem;
+		padding-top: 20rem;
+	}
 
 	background: ${({
 		theme,

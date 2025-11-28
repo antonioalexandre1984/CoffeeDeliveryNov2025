@@ -86,14 +86,17 @@ export function CompleteOrderPage() {
 
     return (
         <FormProvider {...confirmOrderForm}>
+                
             <CompleteOrderPageContainer
                 // ...
-                className="container"
+                
                 onSubmit={handleSubmit(handleConfirmOrder, handleErrors)} 
             >
+                <div className="container">    
                 <CompleteOrderForm/>
                 <SelectedCoffees/>
                 {/* ... (Seu formulário e cafés) */}
+                </div>
             </CompleteOrderPageContainer>
         </FormProvider>
     );

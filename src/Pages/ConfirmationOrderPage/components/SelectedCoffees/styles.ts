@@ -6,9 +6,7 @@ export const SelectedCoffeesContainer = styled.div`
 	flex-direction: column;
 	gap: 0.75rem;
 	max-width: 40rem;
-	width: 100%;
-	margin-top: 2rem;
-	
+	width: 100%;	
 
 	@media (max-width: 768px) {
 		// Adiciona padding de 0 no topo/baixo e 1rem nas laterais.

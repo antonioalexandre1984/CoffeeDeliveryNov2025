@@ -10,7 +10,7 @@ export const CompleteOrderFormContainer = styled.div`
 	/* ----------------------------------- */
 	/* RESPONSIVIDADE MÓVEL       */
 	/* ----------------------------------- */
-	@media (max-width: 768px) {
+	@media (max-width: 368px) {
 		// Quando a tela é menor ou igual a 768px, os itens se empilham
 
 		// Remove ou ajusta o espaçamento lateral se necessário para telas muito pequenas
@@ -18,16 +18,23 @@ export const CompleteOrderFormContainer = styled.div`
 
 		// Se a classe "container" já faz isso, pode ser redundante
 		margin: 2rem;
+	
 	}
 	//min-height: 23.25rem;
 `;
 export const FormSectionContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
-	//width: 100%;
+
+	/* 📱 Mobile */
+	gap: 0.5rem; /* espaçamento menor */
 	background: ${({ theme }) => theme.colors["base-card"]};
 	border-radius: 6px;
-	padding: 2.5rem;
+	padding: 1rem; /* padding reduzido no mobile */
 
+	/* 💻 Desktop */
+	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+		gap: 2rem; /* volta espaçamento original */
+		padding: 2.5rem; /* padding original */
+	}
 `;

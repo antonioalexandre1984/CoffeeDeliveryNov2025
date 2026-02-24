@@ -1,35 +1,37 @@
-import { RegularText, TitleText } from "../../components/Typography";
+import { rgba } from "polished";
 import styled from "styled-components";
 import introBackground from "../../assets/BannerBackground.png";
-import { rgba } from "polished";
+import { RegularText, TitleText } from "../../components/Typography";
 
 // ----------------------------------------------------
 // BANNER CONTAINER
 // ----------------------------------------------------
 
-export const CompleteOrderPageContainer = styled.section`
+export const CompleteOrderPageContainer = styled.form`
 	width: 100%;
-	/* Mobile-First: Uma altura maior para comportar o conteúdo empilhado */
-	height: auto;
-	padding-top: 4rem; /* Garante espaço no topo */
-	padding-bottom: 4rem; /* Garante espaço na base */
+	padding: 4rem 1rem;
 
-	background: ${({
-		theme,
-	}) => `url(${introBackground}) no-repeat center, linear-gradient(
-    0deg,
-    ${theme.colors["base-white"]} 0%,
-    ${rgba(theme.colors["base-background"], 0.2)} 50%,
-    ${theme.colors["base-background"]} 100%
-  )`};
-	background-size: cover;
 	display: flex;
-	align-items: center;
+	flex-direction: column; /* ✅ Mobile: em coluna */
+	gap: 0.5rem; /* ✅ Espaçamento de 0.5rem entre os itens */
+
+	align-items: stretch;
 	justify-content: center;
 
-	/* Desktop/Tablet (md) - Estilo original */
+	background: ${({ theme }) => `url(${introBackground}) no-repeat center,
+		linear-gradient(
+			0deg,
+			${theme.colors["base-white"]} 0%,
+			${rgba(theme.colors["base-background"], 0.2)} 50%,
+			${theme.colors["base-background"]} 100%
+		)`};
+	background-size: cover;
+
+	/* 💻 Desktop */
 	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-		height: 34rem; /* Altura fixa no desktop */
+		flex-direction: row; /* Lado a lado */
+		gap: 2rem; /* Espaçamento maior */
+		height: 34rem;
 		padding: 0;
 	}
 `;

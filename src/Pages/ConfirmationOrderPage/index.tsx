@@ -1,14 +1,14 @@
-import {
-	CompleteOrderPageContainer,
-
-} from "./styles";
-import { CompleteOrderForm } from "./components/CompleteOrderForm";
-import { SelectedCoffees } from "./components/SelectedCoffees";
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { FieldErrors } from "react-hook-form";
 import { FormProvider, useForm /* , useFormContext */ } from "react-hook-form";
 import * as zod from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { CompleteOrderForm } from "./components/CompleteOrderForm";
+import { SelectedCoffees } from "./components/SelectedCoffees";
+import {
+    CompleteOrderPageContainer,
+} from "./styles";
 /* import { useEffect } from "react"; */
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
   
 
@@ -22,7 +22,7 @@ type PaymentMethods = keyof typeof PaymentMethods; */
 const confirmOrderFormValidationSchema = zod.object({
 	cep: zod.string().min(8, "CEP é obrigatório"),
 	street: zod.string().min(5, "Rua é obrigatória"),
-	number: zod.string().min(5, "Número é obrigatório"),
+	number: zod.string().min(2, "Número é obrigatório"),
 	complement: zod.string().optional(),
 	district: zod.string().min(6, "Bairro é obrigatório"),
 	city: zod.string().min(6, "Cidade é obrigatória"),
@@ -77,7 +77,7 @@ export function CompleteOrderPage() {
         cleanCart();
     }
 
-    const handleErrors = (errors: any) => {
+    const handleErrors = (errors: FieldErrors<ConfirmOrderFormData>) => {
         console.log("ERROS NA SUBMISSÃO:", errors);
         // Garante que o estado de erro seja exibido imediatamente
         //trigger(undefined, { shouldFocus: true });
@@ -86,6 +86,7 @@ export function CompleteOrderPage() {
     return (
         <FormProvider {...confirmOrderForm}>
             <CompleteOrderPageContainer
+                // ...derPageContainer
                 // ...
                 className="container"
                 onSubmit={handleSubmit(handleConfirmOrder, handleErrors)} 

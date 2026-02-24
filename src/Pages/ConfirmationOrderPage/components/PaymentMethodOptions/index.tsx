@@ -1,11 +1,11 @@
 import { Bank, CreditCard, Money } from "phosphor-react";
-import { PaymentMethodInput } from "../PaymentMethodInput";
-import { PaymentMethodOptionsContainer } from "./styles";
 import { useFormContext } from "react-hook-form";
 import { RegularText } from "../../../../components/Typography";
+import { PaymentMethodInput } from "../PaymentMethodInput";
+import { PaymentMethodOptionsContainer } from "./styles";
 
 
-export const paymentMethod = {
+const paymentMethod = {
     credit:{
         label: 'Cartão de crédito',
         icon: <CreditCard size={16}/>

@@ -34,7 +34,7 @@ export const PaymentMethodOptionsContainer = styled.div`
 		/* Garante que o wrapper de opções mude para coluna no mobile */
 		.options-wrapper {
 			display: flex;
-			//flex-direction: column;
+			flex-direction: column;
 		}
 	}
 `;

@@ -6,14 +6,14 @@ import { RegularText, TitleText } from "../../components/Typography";
 // ----------------------------------------------------
 // BANNER CONTAINER
 // ----------------------------------------------------
-
 export const CompleteOrderPageContainer = styled.form`
 	width: 100%;
-	padding: 4rem 1rem;
 
+	/* 📱 Mobile */
+	padding: 4rem 1rem;
 	display: flex;
-	flex-direction: column; /* ✅ Mobile: em coluna */
-	gap: 0.5rem; /* ✅ Espaçamento de 0.5rem entre os itens */
+	flex-direction: column;
+	gap: 0.5rem;
 
 	align-items: stretch;
 	justify-content: center;
@@ -29,10 +29,19 @@ export const CompleteOrderPageContainer = styled.form`
 
 	/* 💻 Desktop */
 	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-		flex-direction: row; /* Lado a lado */
-		gap: 2rem; /* Espaçamento maior */
-		height: 34rem;
 		padding: 0;
+		flex-direction: column;
+		gap: 0;
+
+		> div {
+			width: 100%;
+			display: flex;
+			margin-top: 10rem;
+			justify-content: space-between;
+			gap: 2rem;
+			padding-bottom: 15rem;
+			padding-top: 20rem;
+		}
 	}
 `;
 

@@ -74,6 +74,7 @@ export function CompleteOrderPage() {
         navigate('/orderconfirmed',{
             state:data,
         })
+        console.log(data);
         cleanCart();
     }
 
@@ -85,15 +86,18 @@ export function CompleteOrderPage() {
 
     return (
         <FormProvider {...confirmOrderForm}>
+                
             <CompleteOrderPageContainer
                 // ...derPageContainer
                 // ...
-                className="container"
+                
                 onSubmit={handleSubmit(handleConfirmOrder, handleErrors)} 
             >
+                <div className="container">    
                 <CompleteOrderForm/>
                 <SelectedCoffees/>
                 {/* ... (Seu formulário e cafés) */}
+                </div>
             </CompleteOrderPageContainer>
         </FormProvider>
     );
